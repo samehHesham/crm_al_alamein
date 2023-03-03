@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Add Sick Information</title>
+	<style>
+		table {
+			border-collapse: collapse;
+			width: 100%;
+		}
+		
+		th, td {
+			text-align: left;
+			padding: 8px;
+		}
+		
+		th {
+			background-color: #4CAF50;
+			color: white;
+		}
+		
+		tr:nth-child(even) {
+			background-color: #f2f2f2;
+		}
+		
+		form {
+			border: 1px solid #ccc;
+			padding: 10px;
+			margin-bottom: 20px;
+			width: 50%;
+			display: flex;
+			flex-direction: column;
+		}
+		
+		input[type="text"], input[type="date"] {
+			padding: 10px;
+			margin-bottom: 10px;
+			border-radius: 5px;
+			border: 1px solid #ccc;
+			font-size: 16px;
+		}
+		
+		input[type="submit"] {
+			background-color: #4CAF50;
+			color: white;
+			border: none;
+			border-radius: 5px;
+			padding: 10px 20px;
+			font-size: 16px;
+			cursor: pointer;
+		}
+		
+		input[type="submit"]:hover {
+			background-color: #45a049;
+		}
+	</style>
+</head>
+<body>
+	<h1>Add Sick Information</h1>
+	<form id="sick-form">
+		<label for="name">Name:</label>
+		<input type="text" id="name" name="name" required>
+		<label for="symptoms">Symptoms:</label>
+		<input type="text" id="symptoms" name="symptoms" required>
+		<label for="date">Date:</label>
+		<input type="date" id="date" name="date" required>
+		<input type="submit" value="Add Sick Information">
+	</form>
+	<h2>Sick Information</h2>
+	<table id="sick-table">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Symptoms</th>
+				<th>Date</th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
+	<script>
+		const form = document.getElementById("sick-form");
+		const table = document.getElementById("sick-table").getElementsByTagName('tbody')[0];
+		
+		form.addEventListener("submit", function(event) {
+			event.preventDefault();
+			const name = document.getElementById("name").value;
+			const symptoms = document.getElementById("symptoms").value;
+			const date = document.getElementById("date").value;
+			
+			const row = table.insertRow(-1);
+			const nameCell = row.insertCell(0);
+			const symptomsCell = row.insertCell(1);
+			const dateCell = row.insertCell(2);
+			nameCell.innerHTML = name;
+			symptomsCell.innerHTML = symptoms;
+			dateCell.innerHTML = date;
+			
+			form.reset();
+		});
+	</script>
+</body>
+</html>
